@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="layoutAuthentication_content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    {% if customer.id is not defined %}
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Create Customer</h3></div>
+                    {% else %}
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Edit Customer</h3></div>
+                    {% endif %}
+                    <form action="{{ url_for('addcustomer') }}" method="POST">
+                        <input type="hidden" name="id" value="{{customer.id}}" />
+                        <div class="card-body">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="custname" type="text" placeholder="Enter Customer name" value="{{customer.custname}}" />
+                                <label for="inputEmail">Customer Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="add1" type="text" placeholder="Enter address line 1" value="{{customer.add1}}"/>
+                                <label for="inputEmail">Address Line 1</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="add2" type="text" placeholder="Enter address line 2" value="{{customer.add2}}"/>
+                                <label for="inputEmail">Address Line 2</label>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        <input class="form-control" name="city" type="text" placeholder="Enter City" value="{{customer.city}}"/>
+                                        <label for="inputFirstName">City</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input class="form-control" name="pincode" type="text" placeholder="Enter pincode" value="{{customer.pincode}}"/>
+                                        <label for="inputLastName">Pincode</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="phoneno" type="text" placeholder="Enter phone no." value="{{customer.phoneno}}"/>
+                                <label for="inputEmail">Phone No.</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" name="email" type="email" placeholder="name@example.com" value="{{customer.email}}"/>
+                                <label for="inputEmail">Email address</label>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center py-3">
+                            <div class="mt-4 mb-0">
+                                <div class="d-grid">
+                                    {% if customer.id is not defined %}
+                                    <button type="submit" class="btn btn-primary">Add Customer</button>
+                                    {% else %}
+                                    <button type="submit" class="btn btn-primary">Update Customer</button>
+                                    {% endif %}        
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

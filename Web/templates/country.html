@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Country {% endblock %}</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Country List
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>ISO Code</th>
+                        <th scope="col"><a class="btn btn-primary btn-sm" href="/customerform">Add</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for country in countries %}
+                    <tr border="1">
+                        <td>{{country.countryname}}</td>
+                        <td>{{country.iso}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="/editcustomer/{{country.id}}">Edit</a>
+                            <a class="btn btn-primary btn-sm" href="/delcustomerconf?id={{country.id}}&cname={{country.countryname}}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

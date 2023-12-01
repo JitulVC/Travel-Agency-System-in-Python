@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Bookings {% endblock %}</h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Travel Itinerary List
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Booking Ref.No.</th>
+                        <th>PAX Name</th>
+                        <th>Travel Date</th>
+                        <th>Travel Destination</th>
+                        <th>Travel By</th>
+                        <th scope="col"><a class="btn btn-primary btn-sm" href="/trvlitineraryform">Add</a></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for trvlitinerary in trvlitineraries %}
+                    <tr border="1">
+                        <td>{{trvlitinerary.bookingrefno}}</td>
+                        <td>{{trvlitinerary.paxname}}</td>
+                        <td>{{trvlitinerary.fromdate}}</td>
+                        <td>{{trvlitinerary.fromdest}}-{{trvlitinerary.todest}}</td>
+                        <td>{{trvlitinerary.travelcompany}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="/edititinerary/{{trvlitinerary.id}}">Edit</a>
+                            <a class="btn btn-primary btn-sm" href="/delitineraryconf?id={{trvlitinerary.id}}&bookingrefno={{trvlitinerary.bookingrefno}}&paxname={{trvlitinerary.paxname}}">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
